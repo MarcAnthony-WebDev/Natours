@@ -1,0 +1,104 @@
+
+.btn{
+  &:link,
+  /*represents an element that has not yet been visited*/
+  &:visited {
+    /*an element that has been visited*/
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    position: relative;
+    display: inline-block;
+    /* inline elements are treated as text*/
+    border-radius: 10rem;
+    transition: all 0.4s;
+    font-size: $default-font-size;
+    /*needs to be added to the visited state or link state*/
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    /* y axis moves from top to bottom. since we want the object to go upward I use a negative measurement. */
+    box-shadow: 0 1rem 2rem rgba($color-black, .2);
+    /*black with a slight opacity*/
+
+    &::after {
+      /*after pseudoelement that only occurs on hover*/
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+      /*makes the pseudo element disspear. comes back when not hovered on.*/
+    }
+  }
+
+  &:active {
+    /*when we click an element that is the active state*/
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, .2);
+  }
+
+  &::after {
+    content: "";
+    /*can be empty, but needs to be present.*/
+    display: inline-block;
+    /*also needs to be present but exactly the same as it is styled.*/
+    height: 100%;
+    /*100% of the height and width of the button*/
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
+    }
+
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards;
+    /*these styles will be applied as soon as the animation starts at 0%. prevents the button from being loaded and then the animation happens.*/
+  }
+}
+
+.btn-text{
+  &:link,
+  &:visited{
+    color:$color-primary;
+    display: inline-block;//this way you can use properties on it like margin & padding
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;//creates the underline underneath the text
+    padding: 3px;
+    font-size: $default-font-size;
+    transition: all .2s;
+  }
+
+  &:hover{
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, .25);
+    transform: translateY(-2px);//will move the button up;
+  }
+
+  &:active{
+    box-shadow: 0 .5rem 1rem rgba($color-black, .25);
+    transform: translateY(0px);
+  }
+}

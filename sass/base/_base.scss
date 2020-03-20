@@ -1,0 +1,17 @@
+
+//basic definitions of the entire project
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;//not so much typography, more so an overall setting for the webpage and the client's browser Global definition defines what 1 rem is
+}
+
+body {
+  box-sizing: border-box;
+}
