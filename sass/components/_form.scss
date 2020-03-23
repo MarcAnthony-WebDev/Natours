@@ -1,0 +1,98 @@
+.form{
+
+  &__group:not(:last-child){
+    margin-bottom: 2rem;
+  }
+
+  &__input{
+    color: inherit;//when the user types the font color will be the same as the rest of the page.
+    font-size: 1.5rem;
+    font-family: inherit;
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    background-color: rgba($color-white, .5);
+    border: none;
+    border-bottom: 3px solid transparent;
+    display: block;
+    width: 90%;
+    transition: all .3s;
+
+    &:focus{
+      outline: none;
+      box-shadow: 0 1rem 2rem rgba($color-black, .1);
+      border-bottom: 3px solid $color-primary;//because of the 3px, when the element is focused it will move down the input field below it so wew add the same 3px to the initial state but make it transparent.
+
+      &:invalid{
+        border-bottom: 3px solid $color-secondary-dark;
+      }//when focused, when the user enters an invalid response or leaves a field empty the bottom border will outline in this color.
+
+    }
+
+    &::-webkit-input-placeholder{
+      color:$color-grey-dark-2;
+    }
+
+  }
+
+  &__label{
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: .7rem;
+    display: block;
+    transition: all .3s;
+  }
+
+  &__input:placeholder-shown + &__label{//the + is the adjacent sibling selector, ~ is the general sibling selector, second element must be directly after the first in order for the + to work.
+    opacity:0;
+    visibility: hidden;//opacity makes the element hidden but it is still technically on the page while hidden visibility will take the element off the page entirely
+    transform: translateY(-4rem);//label drop down effect.
+  }
+
+  &__radio-group{
+    width: 49%;
+    display: inline-block;
+  }
+
+  &__radio-input{
+    display: none;
+  }
+
+  &__radio-label{
+    font-size:$default-font-size;
+    cursor:pointer;
+    position: relative;
+    padding-left: 4.5rem;
+  }
+
+  &__radio-button{
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid $color-primary;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left:0;
+    top:-.4rem;
+
+    &::after{
+      content: "";//must be defined with a pseudo element.
+      display:block;//must be defined as well.
+      background-color: $color-primary;
+      height:1.3rem;
+      width: 1.3rem;
+      border-radius: 50%;
+      position: absolute;
+      top:50%;
+      left:50%;
+      transition: opacity .2s;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+  }
+
+  &__radio-input:checked ~ &__radio-label &__radio-button::after {
+    opacity: 1;
+  }//when the radio input is checked/selected, we access the button by first going to the direct child which is the radio label and then select the siblin which is the radio button. So the radio button is being affected everytime the radio__input is being checked.
+
+}

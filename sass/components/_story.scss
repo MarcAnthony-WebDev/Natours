@@ -1,57 +1,56 @@
-.story{
-  width: 75%;;
+.story {
+  width: 75%;
   margin: 0 auto;
   box-shadow: 0 3rem 6rem rgba($color-black, .1);
-  background-color: $color-white;
+  background-color: rgba($color-white, .6);
   border-radius: 3px;
-  padding: 6rem;
-  padding-left: 9rem;//because of the translateX at line 22
+  padding: 6rem 6rem 6rem 9rem; //because of the translateX at line 22
   position: relative;
   font-size: $default-font-size;
   transform: skewX(-12deg);
 
-  &__shape{
+  &__shape {
     width: 15rem;
     height: 15rem;
     float: left;
     -webkit-shape-outside: circle(50% at 50% 50%);
-    shape-outside: circle(50% at 50% 50%);//first arguement is the radius of the circle, 50% = half the height and the width of the element, at 50% 50% - the exact center of the cirlce horizontally and vertically. defines where all the content flows outside of the element.
-
+    shape-outside: circle(50% at 50% 50%); //first arguement is the radius of the circle, 50% = half the height and the width of the element, at 50% 50% - the exact center of the cirlce horizontally and vertically. defines where all the content flows outside of the element.
     -webkit-clip-path: circle(50% at 50% 50%);
     clip-path: circle(50% at 50% 50%);
     transform: translateX(-3rem) skewX(12deg);
   }
 
-  &__img{
-    transition: .3s;
-    transform: scale(1.4) translateX(-3rem);;//center the image in the circle
+  &__img {
+    transition: 0.3s;
+    transform: scale(1.4) translateX(-3rem); //center the image in the circle
     height: 100%;
   }
 
-  &__text{
+  &__text {
     transform: skewX(12deg);
   }
 
-  &__caption{
+  &__caption {
     backface-visibility: hidden;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 20%);//figure starts at the bottom and then fades in upwards
+    transform: translate(-50%, 20%); //figure starts at the bottom and then fades in upwards
     color: $color-white;
     text-transform: uppercase;
     font-size: 1.7rem;
     text-align: center;
-    opacity: 0;//figure is hidden
-    transition: .3s;
+    opacity: 0; //figure is hidden
+    transition: 0.3s;
   }
 
-  &:hover &__caption{
+  &:hover &__caption {
     opacity: 1;
     transform: translate(-50%, -50%);
   }
 
-  &:hover &__img{
-    transform: scale(1) translateX(-4rem)
+  &:hover &__img {
+    transform: scale(1) translateX(-4rem);
+    filter: blur(3px) brightness(80%); //brightness--> value below 100% makes the image darker and above 100% makes the picuture brighter
   }
 }

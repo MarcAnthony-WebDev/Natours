@@ -1,5 +1,6 @@
 
 .btn{
+  &,//so the styles get applied to btn as well
   &:link,
   /*represents an element that has not yet been visited*/
   &:visited {
@@ -14,6 +15,10 @@
     transition: all 0.4s;
     font-size: $default-font-size;
     /*needs to be added to the visited state or link state*/
+
+    //Change for the <button> element
+    border:none;
+    cursor: pointer;
   }
 
   &:hover {
@@ -30,8 +35,10 @@
     }
   }
 
-  &:active {
+  &:active,
+  &:focus {
     /*when we click an element that is the active state*/
+    outline:none;
     transform: translateY(-1px);
     box-shadow: 0 0.5rem 1rem rgba($color-black, .2);
   }
