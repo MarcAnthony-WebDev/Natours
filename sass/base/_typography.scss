@@ -5,8 +5,7 @@ body {
   font-weight: 400;
   font-size: $default-font-size;
   line-height: 1.7;
-  padding: 3rem;
-  /*places whole webpage within a white box, gives a clean look.*/
+
 }
 
 .heading-primary {
@@ -24,6 +23,11 @@ body {
     /*the keyframe animation name*/
     animation-duration: 1s;
     animation-timing-function: ease-out;
+
+    @include respond(phone){
+      letter-spacing: 1.5rem;
+      font-size: 5rem;
+    }
   }
 
   &--sub {
@@ -35,6 +39,9 @@ body {
     /* animation-timing-function: ease-in; adds properties to the animation, this one makes the animation happen slow at first and then fast towards the end
     animation-delay: 2s; delay before animation begins
     animation-iteration-count: 3; how many times the animation will happen*/
+    @include respond(phone){
+      letter-spacing: 1.5rem;
+    }
   }
 }
 
@@ -49,6 +56,13 @@ body {
   font-weight: 700;
   -webkit-background-clip:text;
 
+  @include respond(tab-port){
+    font-size: 3rem;
+  }
+
+  @include respond(phone){
+    font-size: 2.5rem;
+  }
 
   &:hover{
     transform: skewY(2deg) skewX(15deg);

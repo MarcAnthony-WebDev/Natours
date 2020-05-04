@@ -10,8 +10,34 @@
 
 html {
   font-size: 62.5%;//not so much typography, more so an overall setting for the webpage and the client's browser Global definition defines what 1 rem is. In this case 1 rem is equal to 10 px. because 62.5 percent of 16 px is 10 px.
+  //1 rem = 10px; 10px/16px = 62.5%
+
+
+  @include respond(tab-land){
+    font-size: 56.25%;//1rem = 9px 9/16=56.25%
+  }
+
+  @include respond(tab-port){
+    font-size: 50%; //1rem = 8px; 8/16 = 50%
+  }
+
+  @include respond(big-desktop){
+    font-size: 75%;//1 rem = 12px; 12/16 =75%
+  }
+
 }
 
 body {
   box-sizing: border-box;
+  padding: 3rem;
+  /*places whole webpage within a white box, gives a clean look.*/
+
+  @include respond(tab-port){
+    padding: 0;
+  }
+}
+
+::selection{
+  background-color: $color-primary;
+  color: $color-white;
 }

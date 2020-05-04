@@ -10,6 +10,12 @@
   visibility: hidden;
   transition: all .3s;
 
+  @supports(-webkit-backdrop-fliter: blur(10px)) or (backdrop-filter:blur(10px)){
+    background-color: rgba($color-black, .3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-fliter: blur(10px);
+  }//this will only get applied in Safari since it is the only browser that supports this feature. If the condiditions are not supported then the code will not be applied.
+
   &:target{//the target for the anchor tag
     opacity:1;
     visibility: visible;
@@ -45,7 +51,7 @@
     display:table;
     overflow: hidden;
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);//fade in effect
     transition: all .5s .2s;
   }
 
@@ -58,6 +64,11 @@
   &__left{
     width: 33.333333%;
     display: table-cell;//browser wwill automatically give left and right the same height.
+
+    @include respond(tab-port){
+      width: 100%;
+      display: block;
+    }
   }
 
   &__right{
@@ -66,17 +77,41 @@
     vertical-align: middle;
     padding: 3rem 5rem;
 
+    @include respond(tab-port){
+      width: 100%;
+      display: block;
+      padding: 1.5rem 2.5rem;
+    }
+
   }
 
   &__img{
-    display: block;
+    display: inline;
     width: 100%;
+
+    @include respond(tab-land){
+      height:27rem;
+    }
+
+    @include respond(tab-port){
+      height: 23rem;
+      position: relative;
+      width: 50%;
+      float: left;
+    }
+
+    @include respond(phone){
+      height:17rem;
+    }
 
   }
 
   &__text{
     font-size: 1.4rem;
     margin-bottom: 4rem;
+    @include respond(tab-port){
+      margin-bottom: 1.5rem;
+    }
 
     -moz-column-count: 2;
     -moz-column-gap: 4rem;
@@ -87,9 +122,20 @@
     column-gap: 4rem;
     column-rule: 1px solid $color-grey-dark;
 
+    @include respond(phone){
+      -moz-column-count: 1;
+      -moz-column-gap: 0;
+
+      column-count: 1;
+      column-gap: 0;
+
+      margin-bottom: 1rem;
+    }
+
     -moz-hyphens: auto;
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
+
   }
 }
